@@ -7,6 +7,28 @@ plus an outline of the argument in [OUTLINE.md](OUTLINE.md).
 This repository holds no Lean code from either project. The original archive
 carries no licence; the short version is Apache 2.0.
 
+## Build check
+
+The compact edition builds. On 2026-11-26 the workflow in
+`.github/workflows/verify.yml` fetched lsernau/grh-lean at commit `72fead1`,
+ran `lake build` on `grh-compact` with Lean v4.35.0 and the pinned Mathlib,
+and printed the axioms of the five theorems in `src/Main.lean`:
+
+    'riemannHypothesis' depends on axioms: [propext, Classical.choice, Quot.sound]
+    'riemannZeta_eq_zero_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+    'LFunction_ne_zero_of_half_lt_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+    'LFunction_eq_zero_re' depends on axioms: [propext, Classical.choice, Quot.sound]
+    'LFunction_eq_zero_re_of_isPrimitive' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+The build took 2 hours 1 minute on a GitHub-hosted runner with 4 cores and
+16 GB of memory, with no errors and no `sorry`. Run and full log:
+<https://github.com/NovusEdge/rh-proof-notes/actions/runs/45873443122>
+
+This shows that Lean accepts proofs of the stated theorems from its three
+standard axioms. It does not show that a person has checked the mathematics,
+and it is not the stricter Comparator replay that the proof's own README
+describes. The readable edition and the original archive were not built here.
+
 ## Size and repetition
 
 Measured on 2026-11-26 from source text, without building.
